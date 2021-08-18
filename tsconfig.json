@@ -1,0 +1,25 @@
+{
+
+   /* Specifies an array of filenames or patterns to include in the program. These filenames are 
+    resolved relative to the directory containing the tsconfig.json file.
+    */
+   "include": ["src/**/*"],
+   "compilerOptions": {
+      "allowJs": true,  /* enables the import style inside the project */
+      "declaration": true, // generate declaration of the each file i.e fileName.d.ts
+      "declarationMap": true, // redirects to fileName.ts if you click on goToDefinition in vsCode
+      "incremental": true, /* Tells TypeScript to save information about the project graph 
+      from the last compilation to files stored on disk. */
+      "tsBuildInfoFile": "./dist/tsconfig.tsbuildinfo", // incremental information will be stored in this file
+      "lib": ["es6", "es2017"],
+      "module": "commonjs", // Sets the module system for the program
+      "outDir": "./dist" /* Redirect output structure to the directory. */,
+      "target": "es5" /* */,
+      "strict": true /* Enable all strict type-checking options. */,
+      "baseUrl": "src" /*lets you set a base directory to resolve non-absolute module names.*/,
+      "esModuleInterop": true /* Enables emit interoperability between CommonJS and ES Modules via 
+      creation of namespace objects for all imports. Ex: see the effect in server.js after disabling it*/,
+      "moduleResolution": "Node",
+      "plugins": [{ "transform": "ts-transformer-imports" }]
+   }
+}

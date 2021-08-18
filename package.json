@@ -1,0 +1,32 @@
+{
+  "name": "testing",
+  "version": "1.0.0",
+  "main": "app.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -b tsconfig.json",
+    "clean": "rimraf dist/",
+    "start": "NODE_ENV=localhost yarn start:base",
+    "start:base": "ts-node src/server.ts"
+  },
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "@types/koa": "^2.11.3",
+    "@types/koa-router": "^7.4.1",
+    "@types/nconf": "^0.10.0",
+    "@types/node": "^14.0.19",
+    "axios": "^0.19.2",
+    "date-fns": "^2.16.0",
+    "koa": "^2.13.0",
+    "koa-router": "^9.4.0",
+    "nconf": "^0.10.0",
+    "ts-node": "^8.10.2",
+    "ts-transformer-imports": "^0.4.3",
+    "typescript": "^3.9.6",
+    "winston": "^3.2.1",
+    "winston-transport": "^4.3.0"
+  },
+  "devDependencies": {
+    "rimraf": "^3.0.2"
+  }
+}
