@@ -3,19 +3,22 @@ import Koa from 'koa'
 import { inBoundRequestLogger } from './middlewares'
 import Router from 'koa-router'
 const app = new Koa()
-import {getAllRoutes} from './controllers/index'
+import { getAllRoutes as userRoutes } from './controllers/user/index'
+import koaBodyParser from 'koa-bodyparser'
 
 
 
 export const createApp = () => {
-   const router:Router = getAllRoutes()
+   const router:Router = userRoutes()
+   app.use(koaBodyParser())
    app.use(inBoundRequestLogger)
    app.use(router.routes())
-   app.on('error', () => {
-        console.log('Ah something went wrong man')
-    })
+   app.use(router.allowedMethods())
+   app.on('error', (error) => {
+        console.trace(error)
+   })
 
-    return app
+   return app
 }
 
 
