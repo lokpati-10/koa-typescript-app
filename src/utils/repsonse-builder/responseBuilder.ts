@@ -23,3 +23,5 @@ export class ResponseBuilder implements IResponseBuilder {
         }
     }
 }
+
+export const createResponseBuilder = () => new ResponseBuilder()
