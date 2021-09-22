@@ -1,4 +1,5 @@
 import { ParameterizedContext } from "koa"
+import { RouteResponse } from '../../utils'
 
 export type TodoItem = {
     name: string,
@@ -6,8 +7,6 @@ export type TodoItem = {
     lastEditedOn: string,
     isCompleted: boolean
 }
-
-export type RouteResponse<T> = T | Error
 
 export type RouteContext = ParameterizedContext & {
     params: {
