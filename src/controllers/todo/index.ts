@@ -1,29 +1,7 @@
-import { ParameterizedContext } from "koa"
 import { format } from 'date-fns'
-import Router, { RouterContext } from "koa-router"
-
-type TodoItem = {
-    name: string,
-    createdOn: string,
-    lastEditedOn: string,
-    isCompleted: boolean
-}
-
-type RouteResponse<T> = T | Error
-
-type RouteContext = ParameterizedContext & {
-    params: {
-        name: string
-    }
-}
-
-interface ITodo {
-    post: (ctx: RouteContext) => RouteResponse<Promise<TodoItem>>
-    getTodoLists: () => RouteResponse<Promise<TodoItem[]>>
-    getTodListByName: (ctx: RouteContext) => RouteResponse<Promise<TodoItem>>
-    completeTodoTask: (ctx: RouteContext) => RouteResponse<Promise<TodoItem>>
-    deleteTodo: (ctx: RouteContext) => RouteResponse<Promise<void>>
-}
+import Router from "koa-router"
+import {TodoItem, ITodo, RouteContext, } from '../../types'
+import {routeHandler} from '../../utils'
 
 
 let todoItems: TodoItem[] = []
@@ -133,25 +111,6 @@ const routes: { url: string, methods: methods[], route: Function }[] = [
     }
 ]
 
-function routeHandler(route: Function) {
-    return async (ctx: RouterContext, next: any) => {
-        try {
-            const res = await route(ctx)
-            ctx.response.status = 200
-            ctx.response.body = {
-                data: res
-            }
-        } catch (error) {
-            ctx.response.status = 400
-            ctx.response.body = {
-                reason: error.message,
-                dateTime: new Date()
-            }
-        }
-
-        return next()
-    }
-}
 
 for (let item of routes) {
     const { url, methods, route } = item

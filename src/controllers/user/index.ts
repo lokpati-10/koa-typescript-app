@@ -1,0 +1,1 @@
+export { getAllRoutes } from './user'
