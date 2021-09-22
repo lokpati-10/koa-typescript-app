@@ -1,5 +1,5 @@
 import Router from 'koa-router'
-import { routeHandler, unauthorizedError, badRequestError, internalServerError } from '../../utils'
+import { routeHandler, unauthorizedError, badRequestError, internalServerError, createResponseBuilder } from '../../utils'
 import { IUser, RouteContext } from '../../types'
 import { userSignInModel } from '../../models'
 import bcryptjs from 'bcryptjs'
@@ -26,6 +26,7 @@ export class User implements IUser {
             return unauthorizedError('userName has already been taken')
         }
 
+
         const saltPassword = await bcryptjs.hash(body.password, 10)
 
         const payload = {
@@ -35,12 +36,11 @@ export class User implements IUser {
 
         await userSignInModel.create(payload)
 
-        return {
+        return createResponseBuilder().withRouteResponse({
             data: {
                 ...body,
-            },
-            statusCode: 201
-        }
+            }}).withStatus(201).build()
+
       } catch(error) {
           console.trace(error) 
           return internalServerError(error.message)
@@ -66,15 +66,14 @@ export class User implements IUser {
 
         const token = await this.JwtSign.signUser(ctx)
 
-        return {
+        return createResponseBuilder().withRouteResponse({
             data: {
                 user: {
                     userName: record.userName,
                     token: token,
                 }
-            },
-            statusCode: 200
-        }
+            }}).withStatus(200).build()
+            
     }
 
 }
