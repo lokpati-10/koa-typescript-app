@@ -1,42 +1,43 @@
-import mongoose , { Schema, Document } from "mongoose";
-import { LoginInfo, UserRegisterInfo } from "types";
+import mongoose, { Schema, Document } from 'mongoose'
+import { LoginInfo, UserRegisterInfo } from 'types'
 
-
-const userSignInSchema: Schema = new Schema<UserRegisterInfo>({
+const userSignInSchema: Schema = new Schema<UserRegisterInfo>(
+  {
     userName: {
-        type: String,
-        required: true,
-        unique: true
+      type: String,
+      required: true,
+      unique: true
     },
     firstName: {
-        type: String,
-        required: true,
+      type: String,
+      required: true
     },
     middleName: {
-        type: String,
+      type: String
     },
     lastName: {
-        type: String,
+      type: String
     },
     password: {
-        type: String,
-        required: true,
+      type: String,
+      required: true
     },
     email: {
-        type: String,
-        required: true,
-        trim: true,
-        unique: true
+      type: String,
+      required: true,
+      trim: true,
+      unique: true
     },
     primaryContactNumber: {
-        type: Number,
+      type: Number
     },
     secondaryContactNumber: {
-        type: Number,
+      type: Number
     }
-
-}, {
+  },
+  {
     timestamps: true
-}) 
+  }
+)
 
 export const userSignInModel = mongoose.model<UserRegisterInfo & Document>('users', userSignInSchema)
