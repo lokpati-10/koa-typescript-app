@@ -62,7 +62,7 @@ export class HttpClient implements IHttpClient {
       })
       return resp
     } catch (e) {
-      throw new Error(`something went wrong - message: ${e.message} - stack: ${e?.stack}`)
+      throw new Error(`something went wrong - message: ${(e as any).message} - stack: ${(e as any)?.stack}`)
     }
   }
 }

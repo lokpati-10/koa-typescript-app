@@ -1,3 +1,5 @@
+import { ParameterizedContext } from 'koa'
+
 export type Data<RouteResponseType = any> = {
   data: RouteResponseType
 }
@@ -5,4 +7,19 @@ export type Data<RouteResponseType = any> = {
 export type Error = { error: any }
 
 // Null is most probably used for the DELETE http verbs
-export type RouteResponse<T = any> = Data<T> | Error | null
+export type RouteResponse<T = any> = Data<T> | Error | undefined
+
+export type RouteContext = ParameterizedContext & {
+  params: {
+    name: string
+  }
+  body?: {
+    [key: string]: any
+  }
+  query?: {
+    [key: string]: any
+  }
+  headers?: {
+    [key: string]: string
+  }
+}

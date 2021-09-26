@@ -1,4 +1,4 @@
-import { RouteContext } from '../todo'
+import { RouteContext } from '../../utils'
 
 export interface IUser {
   registerUser: (user: RouteContext) => Promise<any>
