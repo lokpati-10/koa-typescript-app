@@ -1,18 +1,18 @@
 export enum LogLevel {
-    Debug = 'debug',
-    Verbose = 'notice',
-    Info = 'info',
-    Warn = 'warning',
-    Error = 'error',
-  }
+  Debug = 'debug',
+  Verbose = 'notice',
+  Info = 'info',
+  Warn = 'warning',
+  Error = 'error'
+}
 
 export type LoggerMessage = {
-    startTimeStamp: number,
-    duration: number,
-    routeName: string,
-    level: LogLevel
+  startTimeStamp: number
+  duration: number
+  routeName: string
+  level: LogLevel
 }
 
 export interface IWinstonLogger {
-    log(logMessage: LoggerMessage): void
+  log(logMessage: LoggerMessage): void
 }
