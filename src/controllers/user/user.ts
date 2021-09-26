@@ -50,7 +50,7 @@ export class User implements IUser {
         .build()
     } catch (error) {
       console.trace(error)
-      return internalServerError(error.message)
+      return internalServerError((error as any).message)
     }
   }
 

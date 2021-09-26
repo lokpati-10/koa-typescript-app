@@ -9,7 +9,7 @@ export function routeHandler(route: Function) {
     } catch (error) {
       ctx.response.status = 500
       ctx.response.body = {
-        reason: error.message,
+        reason: (error as any).message,
         dateTime: new Date()
       }
     }
