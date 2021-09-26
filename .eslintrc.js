@@ -1,46 +1,42 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint'],
-  extends: ['airbnb', 'plugin:prettier/recommended'],
+  plugins: ['@typescript-eslint', 'simple-import-sort'],
+  extends: ['airbnb-base', 'plugin:prettier/recommended'],
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: 'module'
   },
   rules: {
-    eqeqeq: [2, 'always'],
-    semi: 0,
-    'no-console': 2,
-    'arrow-parens': [2, 'as-needed'],
-    'max-len': [2, { code: 120, ignoreUrls: true }],
-    'comma-dangle': [2, 'never'],
-    'no-shadow': 0,
-    'prefer-destructuring': 0,
-    'dot-notation': 0,
-    'sort-imports': 0,
-    'simple-import-sort/sort': 2,
-    'import/order': 0,
-    'func-names': 0,
-    'no-restricted-syntax': 0,
-    'no-useless-constructor': 0,
-    'import/prefer-default-export': 0,
-    'import/no-unresolved': 0,
-    'global-require': 0,
-    'consistent-return': 0,
-    'no-plusplus': 0,
-    'no-underscore-dangle': 0,
+    eqeqeq: ['error', 'always'],
+    'no-shadow': 'off',
+    semi: 'off',
+    'no-console': 'error',
+    'arrow-parens': ['error', 'as-needed'],
+    'max-len': ['error', { code: 120, ignoreUrls: true }],
+    'comma-dangle': ['error', 'never'],
+    'simple-import-sort/imports': 'error',
+    'simple-import-sort/exports': 'error',
+    'no-restricted-syntax': 'off',
+    'no-useless-constructor': 'off',
+    'import/prefer-default-export': 'off',
+    'import/no-unresolved': 'off',
+    'global-require': 'off',
+    'consistent-return': 'off',
+    'no-plusplus': 'off',
+    'no-underscore-dangle': 'off',
     'no-empty-function': ['error', { allow: ['constructors'] }],
-    'no-nested-ternary': 0,
-    'max-classes-per-file': 0,
-    'no-param-reassign': 2,
-    'default-case': 0,
-    'symbol-description': 0,
-    'no-empty': 0,
-    'no-void': 0,
-    'class-methods-use-this': 0,
-    'prefer-promise-reject-errors': 2,
-    'no-case-declarations': 2,
-    'react/button-has-type': 0,
-    'no-use-before-define': 0,
+    'no-nested-ternary': 'off',
+    'max-classes-per-file': 'off',
+    'no-param-reassign': 'error',
+    'default-case': 'off',
+    'symbol-description': 'off',
+    'no-empty': 'off',
+    'no-void': 'off',
+    'class-methods-use-this': 'off',
+    'prefer-promise-reject-errors': 'error',
+    'no-case-declarations': 'error',
+    'react/button-has-type': 'off',
+    'no-use-before-define': 'off',
     '@typescript-eslint/naming-convention': [
       'error',
       {
@@ -52,10 +48,10 @@ module.exports = {
         }
       }
     ],
-    '@typescript-eslint/import-name': 0,
-    '@typescript-eslint/no-require-imports': 2,
+    '@typescript-eslint/import-name': 'off',
+    '@typescript-eslint/no-require-imports': 'error',
     '@typescript-eslint/no-unused-vars': [
-      2,
+      'error',
       {
         argsIgnorePattern: '^_',
         varsIgnorePattern: '^_',
@@ -63,21 +59,14 @@ module.exports = {
       }
     ],
     'no-unused-vars': [
-      2,
+      'error',
       {
         argsIgnorePattern: '^_',
         varsIgnorePattern: '^_',
         ignoreRestSiblings: true
       }
     ],
-    'no-restricted-imports': [
-      'error',
-      {
-        name: '@a-team/server-utils',
-        message: '@a-team/server-utils should only be used on server side code. use allowServerUtils if needed.'
-      }
-    ],
-    'jest/valid-expect': 'error'
+    'import/extensions': 'off'
   },
   overrides: [
     {

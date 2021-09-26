@@ -2,7 +2,7 @@ const constructError = (message: string, statusCode: Number, errorDetails: any) 
   return {
     error: {
       message,
-      statusCode: statusCode,
+      statusCode,
       timeStamp: {
         value: new Date(),
         zone: new Date().getTimezoneOffset()

@@ -2,6 +2,7 @@ import { IResponseBuilder, RouteResponse } from '../../types'
 
 export class ResponseBuilder implements IResponseBuilder {
   protected data: RouteResponse | undefined
+
   protected status: Number = 200
 
   withRouteResponse = <T>(data: RouteResponse<T>) => {

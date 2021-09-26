@@ -1,4 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
+
 import { Header, HttpClientConfig, IHttpClient } from '../../types'
 
 export class HttpClient implements IHttpClient {

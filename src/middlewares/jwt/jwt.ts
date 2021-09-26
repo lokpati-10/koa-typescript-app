@@ -1,5 +1,6 @@
-import { IMiddleware, RouteContext } from '../../types'
 import jwt from 'jsonwebtoken'
+
+import { IMiddleware, RouteContext } from '../../types'
 
 export class Jwt implements IMiddleware {
   public static instance: Jwt | undefined

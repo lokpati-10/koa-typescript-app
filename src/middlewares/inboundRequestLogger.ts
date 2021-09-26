@@ -1,5 +1,6 @@
-import { createWinstonLogger } from '../logger'
 import { ParameterizedContext } from 'koa'
+
+import { createWinstonLogger } from '../logger'
 import { LogLevel } from '../types'
 
 export async function inBoundRequestLogger(_ctx: ParameterizedContext, next: any) {

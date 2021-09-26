@@ -1,15 +1,16 @@
-import Router from 'koa-router'
-import {
-  routeHandler,
-  unauthorizedError,
-  badRequestError,
-  internalServerError,
-  createResponseBuilder
-} from '../../utils'
-import { IUser, RouteContext } from '../../types'
-import { userSignInModel } from '../../models'
 import bcryptjs from 'bcryptjs'
-import { JwtSign, createJwtSign } from '../../routes'
+import Router from 'koa-router'
+
+import { userSignInModel } from '../../models'
+import { createJwtSign, JwtSign } from '../../routes'
+import { IUser, RouteContext } from '../../types'
+import {
+  badRequestError,
+  createResponseBuilder,
+  internalServerError,
+  routeHandler,
+  unauthorizedError
+} from '../../utils'
 
 export class User implements IUser {
   public static instance: IUser | undefined
@@ -49,6 +50,7 @@ export class User implements IUser {
         .withStatus(201)
         .build()
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.trace(error)
       return internalServerError((error as any).message)
     }
@@ -60,7 +62,7 @@ export class User implements IUser {
       return unauthorizedError('invalid user')
     }
 
-    const record = await userSignInModel.findOne({ userName: userName })
+    const record = await userSignInModel.findOne({ userName })
 
     if (!record) {
       return badRequestError('user does not exist pleas signup first')
@@ -77,7 +79,7 @@ export class User implements IUser {
         data: {
           user: {
             userName: record.userName,
-            token: token
+            token
           }
         }
       })
@@ -110,7 +112,7 @@ const routes: { url: string; methods: methods[]; route: Function }[] = [
   // }
 ]
 
-for (let item of routes) {
+for (const item of routes) {
   const { url, methods, route } = item
   router.register(url, methods, routeHandler(route))
 }

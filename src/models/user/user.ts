@@ -1,5 +1,5 @@
-import mongoose, { Schema, Document } from 'mongoose'
-import { LoginInfo, UserRegisterInfo } from 'types'
+import mongoose, { Document, Schema } from 'mongoose'
+import { UserRegisterInfo } from 'types'
 
 const userSignInSchema: Schema = new Schema<UserRegisterInfo>(
   {

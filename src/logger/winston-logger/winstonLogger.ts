@@ -1,8 +1,10 @@
-import { IWinstonLogger, LoggerMessage } from '../../types'
 import winston, { Logger } from 'winston'
+
+import { IWinstonLogger, LoggerMessage } from '../../types'
 
 export class WinstonLogger implements IWinstonLogger {
   protected logger: Logger
+
   protected static instance: WinstonLogger
 
   static getInstance() {
