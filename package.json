@@ -8,7 +8,7 @@
     "clean": "rimraf dist/",
     "start": "NODE_ENV=localhost yarn start:base",
     "start:base": "ts-node src/server.ts",
-    "lint:fix": "yarn eslint --fix",
+    "lint:fix": "eslint  --fix --ext .js,.ts .",
     "prettier:fix": "prettier --config ./.prettierrc --write \"**/*.{ts,tsx,yml,yaml,js,sh,json}\""
   },
   "dependencies": {
@@ -36,6 +36,7 @@
     "@types/bcryptjs": "^2.4.2",
     "@types/jsonwebtoken": "^8.5.5",
     "@types/koa-bodyparser": "^4.3.3",
+    "@typescript-eslint/eslint-plugin": "^4.31.2",
     "@typescript-eslint/parser": "^4.31.2",
     "eslint": "^7.2.0",
     "eslint-config-airbnb-base": "14.2.1",

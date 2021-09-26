@@ -1,5 +1,6 @@
-import { RouteContext } from '../../types'
 import jwt from 'jsonwebtoken'
+
+import { RouteContext } from '../../types'
 
 export class JwtSign {
   public static instance: JwtSign | undefined
@@ -13,7 +14,7 @@ export class JwtSign {
   constructor() {}
 
   signUser = async (ctx: RouteContext): Promise<string> => {
-    const body = ctx.request.body
+    const { body } = ctx.request
     try {
       const token = jwt.sign(
         {
@@ -28,6 +29,7 @@ export class JwtSign {
       )
       return token
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.trace(error)
       throw new Error('catch me')
     }
