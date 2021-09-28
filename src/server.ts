@@ -3,13 +3,14 @@ import mongoose from 'mongoose'
 
 import { createApp } from './app'
 
-const connectionString = 'dummy' /* set using environment */
+const connectionString = 'dummyString' /* set using environment */
 
 mongoose
   .connect(connectionString)
   .then(() => {
     // eslint-disable-next-line no-console
-    console.log('database connection happens')
+    console.log('database connected')
+    process.nextTick(createHttpServer)
   })
   .catch(error => {
     // eslint-disable-next-line no-console
@@ -36,5 +37,3 @@ const createHttpServer = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   httpServer = server
 }
-
-createHttpServer()

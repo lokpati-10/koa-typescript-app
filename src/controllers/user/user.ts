@@ -1,16 +1,9 @@
 import bcryptjs from 'bcryptjs'
-import Router from 'koa-router'
 
 import { userSignInModel } from '../../models'
 import { createJwtSign, JwtSign } from '../../routes'
-import { IUser, RouteContext } from '../../types'
-import {
-  badRequestError,
-  createResponseBuilder,
-  internalServerError,
-  routeHandler,
-  unauthorizedError
-} from '../../utils'
+import { IUser, RouteContext, RouteDefinition } from '../../types'
+import { badRequestError, createResponseBuilder, internalServerError, unauthorizedError } from '../../utils'
 
 export class User implements IUser {
   public static instance: IUser | undefined
@@ -90,19 +83,15 @@ export class User implements IUser {
 
 const instance = User.getInstance()
 
-const router = new Router()
-
-type methods = 'GET' | 'POST' | 'PUT' | 'DELETE'
-
-const routes: { url: string; methods: methods[]; route: Function }[] = [
+export const routes: RouteDefinition[] = [
   {
-    url: '/api/v1/user/login',
-    methods: ['POST'],
+    path: '/api/v1/user/login',
+    method: 'POST',
     route: instance.login
   },
   {
-    url: '/api/v1/user/register',
-    methods: ['POST'],
+    path: '/api/v1/user/register',
+    method: 'POST',
     route: instance.registerUser
   }
   // {
@@ -111,10 +100,3 @@ const routes: { url: string; methods: methods[]; route: Function }[] = [
   //     route: todoInstance.validateToken
   // }
 ]
-
-for (const item of routes) {
-  const { url, methods, route } = item
-  router.register(url, methods, routeHandler(route))
-}
-
-export const getAllRoutes = (): Router => router

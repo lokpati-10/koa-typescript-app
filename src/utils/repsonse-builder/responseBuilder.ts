@@ -18,7 +18,7 @@ export class ResponseBuilder implements IResponseBuilder {
   build = () => {
     return {
       body: this.data,
-      status: this.status
+      statusCode: this.status
     }
   }
 }

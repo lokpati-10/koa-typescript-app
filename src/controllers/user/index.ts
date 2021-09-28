@@ -1,1 +1,1 @@
-export { getAllRoutes } from './user'
+export { routes } from './user'
