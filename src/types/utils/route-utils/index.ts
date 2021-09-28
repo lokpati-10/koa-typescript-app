@@ -23,3 +23,14 @@ export type RouteContext = ParameterizedContext & {
     [key: string]: string
   }
 }
+
+export type RouteDefinition = {
+  path: string
+  method: 'GET' | 'PUT' | 'POST' | 'DELETE'
+  route: (ctx: RouteContext) => Promise<any>
+}
+
+export interface IRouteBuilder {
+  addRoutes: (routes: RouteDefinition[]) => this
+  build: () => RouteDefinition[]
+}

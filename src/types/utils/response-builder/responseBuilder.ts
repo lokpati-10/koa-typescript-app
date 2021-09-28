@@ -2,7 +2,7 @@ import { RouteResponse } from '../route-utils'
 
 export type Response<T = any> = {
   body: T
-  status: Number
+  statusCode: Number
 }
 
 export interface IResponseBuilder {
